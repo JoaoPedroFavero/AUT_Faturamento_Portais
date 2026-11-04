@@ -12,9 +12,9 @@ pyt.tesseract_cmd = os.getenv("PYTESSERACT_LOCAL")
 
 @dataclass(frozen=True)
 class Constante:
-    PORTAL_SCHULZ: str = os.getenv("PORTAL")
-    DIM: str = os.getenv("SISTEMA")
-    CNPJ_SCHULZ_COMPRESSORES: str = os.getenv("CNPJ")
+    PORTAL_COMPRAS: str = os.getenv("PORTAL")
+    SISTEMA: str = os.getenv("SISTEMA")
+    CNPJ_CLIENTE: str = os.getenv("CNPJ")
 constante = Constante()
 
 #C:\Users\USER\Downloads #path para o Excel da Schulz
@@ -52,7 +52,7 @@ funcoesMain.novaGuiaChrome()
 
 #ENTRANDO NO PORTAL DA SCHULZ
 try:
-    pag.write(constante.PORTAL_SCHULZ)
+    pag.write(constante.PORTAL_COMPRAS)
     pag.press("enter")
 except pag.FailSafeException as pagFail:
     alertaPag("Encerrado por PyAutoGui de forma Segura", pagFail)
@@ -155,7 +155,7 @@ listaQtdOC = ocSchulz["Qtd Ordem"].to_list() #lista de todas as quantidades de i
 
 #NOVA GUIA PARA ACESSAR O DIM
 funcoesMain.novaGuiaChrome()
-pag.write(str(constante.DIM))
+pag.write(str(constante.SISTEMA))
 pag.press("enter")
 
 #ACESSANDO O DIM
@@ -389,7 +389,7 @@ if(posBoxSelecionarCliente):
 else:
     print("❌ Não foi possível clicar no Box de Selecionar Cliente.")
 
-pag.write(str(constante.CNPJ_SCHULZ_COMPRESSORES))
+pag.write(str(constante.CNPJ_CLIENTE))
 time.sleep(1.5)
 pag.press("enter")
 '''
